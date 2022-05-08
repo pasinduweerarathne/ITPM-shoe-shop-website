@@ -25,5 +25,4 @@ ImportData.post(
   })
 );
 
-
 export default ImportData;
