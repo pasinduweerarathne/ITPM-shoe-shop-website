@@ -2,8 +2,10 @@ import express from "express";
 import dotenv from "dotenv";
 import connectDatabase from "./config/MongoDb.js";
 import ImportData from "./DataImport.js";
+import productRoute from "./Routes/ProductRoutes.js";
 import { errorHandler, notFound } from "./Middleware/Errors.js";
 import userRouter from "./Routes/UserRoutes.js";
+import products from "./data/Products.js";
 
 dotenv.config();
 connectDatabase();
@@ -11,7 +13,9 @@ const app = express();
 app.use(express.json());
 
 // API
+app.use("/api/import", ImportData);
 app.use("/api/users", userRouter);
+app.use("/api/products", productRoute);
 
 // ERROR HANDLER
 app.use(notFound);
